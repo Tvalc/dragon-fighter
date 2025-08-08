@@ -1,0 +1,142 @@
+:root {
+    --color-bg: #252237;
+    --color-dragon: #b72e2e;
+    --color-village: #c2a369;
+    --color-enemy: #3e495d;
+    --color-flame: #ff9a30;
+    --color-flame-bright: #ffe09d;
+    --color-ui: #f5f1e6;
+    --color-health: #e53d3d;
+    --color-powerup: #2dd881;
+    --color-hud-bg: #181626d0;
+    --shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+body {
+    background: var(--color-bg);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+#game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game-canvas {
+    background: linear-gradient(180deg, #42517f 0%, #b7d2a8 100%);
+    box-shadow: var(--shadow);
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid #232140;
+    display: block;
+}
+
+#ui-overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 960px;
+    height: 640px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.menu-screen,
+.pause-screen,
+.victory-screen,
+.gameover-screen {
+    position: absolute;
+    top: 0; left: 0;
+    width: 960px;
+    height: 640px;
+    background: rgba(24, 22, 38, 0.92);
+    color: var(--color-ui);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    font-size: 2.2em;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    pointer-events: all;
+}
+
+.menu-button, .restart-button, .resume-button {
+    margin-top: 24px;
+    background: var(--color-dragon);
+    color: var(--color-ui);
+    font-size: 1.3em;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 48px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.menu-button:hover,
+.restart-button:hover,
+.resume-button:hover {
+    background: #e8613c;
+    transform: scale(1.05);
+}
+
+.hud-bar {
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    width: 100%;
+    height: 52px;
+    background: var(--color-hud-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 1.2em;
+    color: var(--color-ui);
+    z-index: 3;
+    border-radius: 10px 10px 0 0;
+}
+
+.hud-bar .hud-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.hud-bar .hud-health {
+    height: 18px;
+    width: 180px;
+    background: #3e2121;
+    border-radius: 6px;
+    margin-right: 16px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+}
+.hud-bar .hud-health-inner {
+    height: 100%;
+    background: linear-gradient(90deg, #e53d3d, #ffb04d 85%);
+    border-radius: 6px;
+    transition: width 0.25s;
+}
+
+@media (max-width: 1000px) {
+    #game-canvas, #ui-overlay, .menu-screen, .pause-screen, .victory-screen, .gameover-screen {
+        width: 100vw !important;
+        height: 70vw !important;
+        max-width: 960px;
+        max-height: 640px;
+        font-size: 1.2em !important;
+    }
+    .hud-bar {
+        font-size: 1em;
+        padding: 0 12px;
+    }
+}
